@@ -1,0 +1,484 @@
+<!-- ================= KELOLA PENGGUNA ================= -->
+<div class="page-header">
+  <div class="page-title-box">
+    <h2 class="page-title">
+      <i class="fa-solid fa-users-gear"></i> Manajemen Pengguna &amp; Hak Akses
+    </h2>
+    <p class="page-subtitle">
+      Pengelolaan data akun seluruh entitas sistem: Administrator, Pemilik Stan (Tenant), dan Pelanggan Pujasera.
+    </p>
+  </div>
+  <div class="page-actions">
+    <!-- Tombol Tambah Pengguna -->
+    <button class="btn btn-primary" id="btn-trigger-add-user">
+      <i class="fa-solid fa-user-plus"></i> Tambah Pengguna Baru
+    </button>
+  </div>
+</div>
+
+<!-- Alert Notifikasi Hasil Aksi / Validasi -->
+<div id="user-alert-container"></div>
+
+<!-- Toolbar Filter Role & Pencarian -->
+<div class="content-panel">
+  <div class="panel-body">
+    <div class="toolbar-panel">
+      
+      <!-- Filter Role Pills -->
+      <div class="filter-pills" id="role-filter-pills">
+        <button type="button" class="pill-btn active" data-role="ALL">Semua (5)</button>
+        <button type="button" class="pill-btn" data-role="ADMIN">Admin (1)</button>
+        <button type="button" class="pill-btn" data-role="PEMILIK_STAN">Pemilik Stan (2)</button>
+        <button type="button" class="pill-btn" data-role="PELANGGAN">Pelanggan (2)</button>
+      </div>
+
+      <!-- Kotak Pencarian -->
+      <div class="search-box-wrapper">
+        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+        <input type="text" id="user-search-input" class="search-input" placeholder="Cari nama, email, no HP...">
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Tabel Daftar Pengguna -->
+<div class="content-panel">
+  <div class="panel-body no-padding">
+    <div class="table-container">
+      <table class="data-table" id="user-table">
+        <thead>
+          <tr>
+            <th>ID User</th>
+            <th>Nama Pengguna</th>
+            <th>Email</th>
+            <th>Nomor Telepon (HP)</th>
+            <th>Peran (Role)</th>
+            <th>Status Akun</th>
+            <th class="text-right">Aksi Admin</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- User 1: Admin -->
+          <tr data-role="ADMIN" data-search="kristina ina helan kristina@nyamcenter.id 081234567890">
+            <td><strong>#USR-01</strong></td>
+            <td>
+              <div style="display: flex; align-items: center; gap: 10px;">
+                <img src="images/admin-profile.jpg" alt="Foto Admin" class="admin-avatar" style="width: 32px; height: 32px;">
+                <div>
+                  <div><strong>Kristina Ina Helan</strong></div>
+                  <small class="stat-desc">Super Administrator</small>
+                </div>
+              </div>
+            </td>
+            <td>kristina@nyamcenter.id</td>
+            <td>081234567890</td>
+            <td>
+              <span class="status-badge badge-primary">
+                <i class="fa-solid fa-shield-halved"></i> ADMIN
+              </span>
+            </td>
+            <td>
+              <span class="status-badge badge-success">Aktif</span>
+            </td>
+            <td class="text-right">
+              <small class="stat-desc">Akun Utama</small>
+            </td>
+          </tr>
+
+          <!-- User 2: Pemilik Stan -->
+          <tr data-role="PEMILIK_STAN" data-search="pak minarji pakmin@nyamcenter.id 082133445566">
+            <td><strong>#USR-02</strong></td>
+            <td>
+              <div style="display: flex; align-items: center; gap: 10px;">
+                <div style="width: 32px; height: 32px; border-radius: 50%; color: white; font-weight: bold; font-size: 11px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #f43f5e, #fb7185);">
+                  PM
+                </div>
+                <div>
+                  <div><strong>Pak Minarji</strong></div>
+                  <small class="stat-desc">Tenant Stan A-01 (Soto Cak Har)</small>
+                </div>
+              </div>
+            </td>
+            <td>pakmin@nyamcenter.id</td>
+            <td>082133445566</td>
+            <td>
+              <span class="status-badge badge-info">
+                <i class="fa-solid fa-store"></i> PEMILIK_STAN
+              </span>
+            </td>
+            <td>
+              <span class="status-badge badge-success badge-status">Aktif</span>
+            </td>
+            <td class="text-right">
+              <button class="btn btn-danger-outline btn-toggle-user" data-id="2" data-name="Pak Minarji">
+                <i class="fa-solid fa-power-off"></i> Nonaktifkan
+              </button>
+            </td>
+          </tr>
+
+          <!-- User 3: Pemilik Stan -->
+          <tr data-role="PEMILIK_STAN" data-search="bu sri rahayu busri@nyamcenter.id 081299887766">
+            <td><strong>#USR-03</strong></td>
+            <td>
+              <div style="display: flex; align-items: center; gap: 10px;">
+                <div style="width: 32px; height: 32px; border-radius: 50%; color: white; font-weight: bold; font-size: 11px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #f43f5e, #fb7185);">
+                  SR
+                </div>
+                <div>
+                  <div><strong>Bu Sri Rahayu</strong></div>
+                  <small class="stat-desc">Tenant Stan A-02 (Mie Solo Berkah)</small>
+                </div>
+              </div>
+            </td>
+            <td>busri@nyamcenter.id</td>
+            <td>081299887766</td>
+            <td>
+              <span class="status-badge badge-info">
+                <i class="fa-solid fa-store"></i> PEMILIK_STAN
+              </span>
+            </td>
+            <td>
+              <span class="status-badge badge-success badge-status">Aktif</span>
+            </td>
+            <td class="text-right">
+              <button class="btn btn-danger-outline btn-toggle-user" data-id="3" data-name="Bu Sri Rahayu">
+                <i class="fa-solid fa-power-off"></i> Nonaktifkan
+              </button>
+            </td>
+          </tr>
+
+          <!-- User 4: Pelanggan -->
+          <tr data-role="PELANGGAN" data-search="anisa dini septianda anisa@gmail.com 087711223344">
+            <td><strong>#USR-04</strong></td>
+            <td>
+              <div style="display: flex; align-items: center; gap: 10px;">
+                <div style="width: 32px; height: 32px; border-radius: 50%; color: white; font-weight: bold; font-size: 11px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #fda4af, #f43f5e);">
+                  AD
+                </div>
+                <div>
+                  <div><strong>Anisa Dini Septianda</strong></div>
+                  <small class="stat-desc">Pelanggan Terdaftar</small>
+                </div>
+              </div>
+            </td>
+            <td>anisa@gmail.com</td>
+            <td>087711223344</td>
+            <td>
+              <span class="status-badge badge-purple">
+                <i class="fa-solid fa-user"></i> PELANGGAN
+              </span>
+            </td>
+            <td>
+              <span class="status-badge badge-success badge-status">Aktif</span>
+            </td>
+            <td class="text-right">
+              <button class="btn btn-danger-outline btn-toggle-user" data-id="4" data-name="Anisa Dini">
+                <i class="fa-solid fa-power-off"></i> Nonaktifkan
+              </button>
+            </td>
+          </tr>
+
+          <!-- User 5: Pelanggan (Nonaktif) -->
+          <tr data-role="PELANGGAN" data-search="budi susanto budi@gmail.com 085544332211">
+            <td><strong>#USR-05</strong></td>
+            <td>
+              <div style="display: flex; align-items: center; gap: 10px;">
+                <div style="width: 32px; height: 32px; border-radius: 50%; color: white; font-weight: bold; font-size: 11px; display: flex; align-items: center; justify-content: center; background: #94a3b8;">
+                  BS
+                </div>
+                <div>
+                  <div><strong>Budi Susanto</strong></div>
+                  <small class="stat-desc">Pelanggan</small>
+                </div>
+              </div>
+            </td>
+            <td>budi@gmail.com</td>
+            <td>085544332211</td>
+            <td>
+              <span class="status-badge badge-purple">
+                <i class="fa-solid fa-user"></i> PELANGGAN
+              </span>
+            </td>
+            <td>
+              <span class="status-badge badge-primary badge-status">Nonaktif</span>
+            </td>
+            <td class="text-right">
+              <button class="btn btn-outline btn-toggle-user" data-id="5" data-name="Budi Susanto">
+                <i class="fa-solid fa-power-off"></i> Aktifkan
+              </button>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ================= MODAL FORM TAMBAH PENGGUNA ================= -->
+<div class="custom-modal" id="modalTambahUser">
+  <div class="modal-dialog-box">
+    
+    <div class="modal-box-header">
+      <h3 class="modal-box-title">
+        <i class="fa-solid fa-user-plus"></i> Tambah Pengguna Baru
+      </h3>
+      <button type="button" class="modal-close-icon" id="btn-close-modal-user" aria-label="Tutup">&times;</button>
+    </div>
+
+    <form id="formTambahUserModal" novalidate>
+      <div class="modal-box-body">
+        
+        <div class="form-group">
+          <label for="modal_nama" class="form-label">
+            Nama Lengkap <span class="required-star">*</span>
+          </label>
+          <div class="input-with-icon">
+            <span class="input-icon"><i class="fa-solid fa-user"></i></span>
+            <input type="text" class="form-input" id="modal_nama" placeholder="Contoh: Rian Dwi Pratama">
+          </div>
+          <div class="error-feedback"></div>
+          <small class="input-hint">Minimal 3 karakter.</small>
+        </div>
+
+        <div class="form-group">
+          <label for="modal_email" class="form-label">
+            Alamat Email <span class="required-star">*</span>
+          </label>
+          <div class="input-with-icon">
+            <span class="input-icon"><i class="fa-solid fa-envelope"></i></span>
+            <input type="email" class="form-input" id="modal_email" placeholder="nama@nyamcenter.id">
+          </div>
+          <div class="error-feedback"></div>
+        </div>
+
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label for="modal_password" class="form-label">
+              Password <span class="required-star">*</span>
+            </label>
+            <input type="password" class="form-input" id="modal_password" placeholder="Min. 6 karakter">
+            <div class="error-feedback"></div>
+          </div>
+          <div class="form-group">
+            <label for="modal_password_confirm" class="form-label">
+              Konfirmasi Password <span class="required-star">*</span>
+            </label>
+            <input type="password" class="form-input" id="modal_password_confirm" placeholder="Ulangi password">
+            <div class="error-feedback"></div>
+          </div>
+        </div>
+
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label for="modal_no_hp" class="form-label">
+              Nomor Telepon (HP) <span class="required-star">*</span>
+            </label>
+            <input type="tel" class="form-input" id="modal_no_hp" placeholder="08xxxxxxxxxx">
+            <div class="error-feedback"></div>
+          </div>
+          <div class="form-group">
+            <label for="modal_role" class="form-label">
+              Peran (Role) <span class="required-star">*</span>
+            </label>
+            <select class="form-select" id="modal_role">
+              <option value="" selected disabled>-- Pilih Role --</option>
+              <option value="ADMIN">ADMIN</option>
+              <option value="PEMILIK_STAN">PEMILIK_STAN</option>
+              <option value="PELANGGAN">PELANGGAN</option>
+            </select>
+            <div class="error-feedback"></div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="modal-box-footer">
+        <button type="button" class="btn btn-danger-outline" id="btn-cancel-modal-user">Batal</button>
+        <button type="submit" class="btn btn-primary" id="btn-submit-modal-user">
+          <i class="fa-solid fa-floppy-disk"></i> Simpan Pengguna
+        </button>
+      </div>
+    </form>
+
+  </div>
+</div>
+
+<script>
+  function initPenggunaFeatures() {
+    // 1. Filter Role Pills & Search Bar
+    let activeRole = 'ALL';
+    const $rows = $('#user-table tbody tr');
+
+    function filterUsers() {
+      const q = $('#user-search-input').val().toLowerCase().trim();
+      $rows.each(function () {
+        const rowRole = $(this).attr('data-role');
+        const rowSearch = $(this).attr('data-search') || '';
+        const matchRole = (activeRole === 'ALL' || rowRole === activeRole);
+        const matchSearch = (!q || rowSearch.indexOf(q) !== -1);
+        $(this).toggle(matchRole && matchSearch);
+      });
+    }
+
+    $('#role-filter-pills .pill-btn').off('click').on('click', function () {
+      $('#role-filter-pills .pill-btn').removeClass('active');
+      $(this).addClass('active');
+      activeRole = $(this).attr('data-role');
+      filterUsers();
+    });
+
+    $('#user-search-input').off('keyup input').on('keyup input', filterUsers);
+
+    // 2. Toggle Status Akun (Aktif / Nonaktif)
+    $('.btn-toggle-user').off('click').on('click', function () {
+      const name = $(this).attr('data-name');
+      const $row = $(this).closest('tr');
+      const $badge = $row.find('.badge-status');
+      const isCurrentlyActive = $badge.text().trim() === 'Aktif';
+
+      if (isCurrentlyActive) {
+        if (confirm('Nonaktifkan akun pengguna "' + name + '"? Pengguna tidak akan dapat login ke sistem.')) {
+          $badge.text('Nonaktif').removeClass('badge-success').addClass('badge-primary');
+          $(this).removeClass('btn-danger-outline').addClass('btn-outline').html('<i class="fa-solid fa-power-off"></i> Aktifkan');
+        }
+      } else {
+        alert('Akun pengguna "' + name + '" telah diaktifkan kembali.');
+        $badge.text('Aktif').removeClass('badge-primary').addClass('badge-success');
+        $(this).removeClass('btn-outline').addClass('btn-danger-outline').html('<i class="fa-solid fa-power-off"></i> Nonaktifkan');
+      }
+    });
+
+    // 3. Modal Handler Buka / Tutup
+    $('#btn-trigger-add-user').off('click').on('click', function () {
+      $('#modalTambahUser').addClass('show');
+      $('body').css('overflow', 'hidden');
+    });
+
+    $('#btn-close-modal-user, #btn-cancel-modal-user').off('click').on('click', function () {
+      $('#modalTambahUser').removeClass('show');
+      $('body').css('overflow', '');
+    });
+
+    // 4. Validasi Form Tambah Pengguna Modal dengan jQuery
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phoneRegex = /^(\+62|62|0)8[0-9]{8,12}$/;
+
+    function validateInput($el, isValid, msg) {
+      const $parent = $el.closest('.form-group');
+      const $fb = $parent.find('.error-feedback');
+      if (isValid) {
+        $el.removeClass('is-invalid').addClass('is-valid');
+        $fb.hide().text('');
+        return true;
+      } else {
+        $el.removeClass('is-valid').addClass('is-invalid');
+        $fb.show().text(msg);
+        return false;
+      }
+    }
+
+    $('#modal_nama').off('input blur').on('input blur', function () {
+      const val = $(this).val().trim();
+      validateInput($(this), val.length >= 3, 'Nama wajib diisi minimal 3 karakter.');
+    });
+
+    $('#modal_email').off('input blur').on('input blur', function () {
+      const val = $(this).val().trim();
+      validateInput($(this), emailRegex.test(val), 'Format email tidak valid (contoh: user@nyamcenter.id).');
+    });
+
+    $('#modal_password').off('input blur').on('input blur', function () {
+      const val = $(this).val();
+      validateInput($(this), val.length >= 6, 'Password wajib minimal 6 karakter.');
+    });
+
+    $('#modal_password_confirm').off('input blur').on('input blur', function () {
+      const val = $(this).val();
+      const pass = $('#modal_password').val();
+      validateInput($(this), val.length > 0 && val === pass, 'Konfirmasi password harus cocok.');
+    });
+
+    $('#modal_no_hp').off('input blur').on('input blur', function () {
+      const val = $(this).val().trim();
+      validateInput($(this), phoneRegex.test(val), 'Nomor telepon tidak valid (contoh: 081234567890).');
+    });
+
+    $('#modal_role').off('change blur').on('change blur', function () {
+      const val = $(this).val();
+      validateInput($(this), !!val, 'Silakan pilih peran pengguna.');
+    });
+
+    $('#formTambahUserModal').off('submit').on('submit', function (e) {
+      e.preventDefault();
+
+      $('#modal_nama').trigger('blur');
+      $('#modal_email').trigger('blur');
+      $('#modal_password').trigger('blur');
+      $('#modal_password_confirm').trigger('blur');
+      $('#modal_no_hp').trigger('blur');
+      $('#modal_role').trigger('blur');
+
+      if ($(this).find('.is-invalid').length > 0) {
+        alert('Harap lengkapi seluruh isian form dengan benar.');
+        return false;
+      }
+
+      // Ambil data
+      const newNama = $('#modal_nama').val().trim();
+      const newEmail = $('#modal_email').val().trim();
+      const newHp = $('#modal_no_hp').val().trim();
+      const newRole = $('#modal_role').val();
+      const newId = '#USR-0' + ($('#user-table tbody tr').length + 1);
+
+      // Tambahkan baris baru ke tabel pengguna secara dinamis
+      const newRowHtml = `
+        <tr data-role="${newRole}" data-search="${newNama.toLowerCase()} ${newEmail.toLowerCase()} ${newHp}">
+          <td><strong>${newId}</strong></td>
+          <td>
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <div style="width: 32px; height: 32px; border-radius: 50%; color: white; font-weight: bold; font-size: 11px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #e11d48, #f43f5e);">
+                ${newNama.substring(0, 2).toUpperCase()}
+              </div>
+              <div>
+                <div><strong>${newNama}</strong></div>
+                <small class="stat-desc">Baru Ditambahkan</small>
+              </div>
+            </div>
+          </td>
+          <td>${newEmail}</td>
+          <td>${newHp}</td>
+          <td>
+            <span class="status-badge badge-primary">${newRole}</span>
+          </td>
+          <td>
+            <span class="status-badge badge-success badge-status">Aktif</span>
+          </td>
+          <td class="text-right">
+            <button class="btn btn-danger-outline btn-toggle-user" data-id="${newId}" data-name="${newNama}">
+              <i class="fa-solid fa-power-off"></i> Nonaktifkan
+            </button>
+          </td>
+        </tr>
+      `;
+
+      $('#user-table tbody').prepend(newRowHtml);
+
+      // Tutup modal secara native
+      $('#modalTambahUser').removeClass('show');
+      $('body').css('overflow', '');
+
+      // Alert notifikasi sukses
+      $('#user-alert-container').html(`
+        <div class="custom-alert alert-success">
+          <i class="fa-solid fa-circle-check"></i> Akun pengguna baru <strong>${newNama}</strong> (${newRole}) berhasil didaftarkan dan tersimpan!
+        </div>
+      `);
+
+      // Reset form
+      $('#formTambahUserModal')[0].reset();
+      $('#formTambahUserModal').find('.is-valid').removeClass('is-valid');
+    });
+  }
+</script>

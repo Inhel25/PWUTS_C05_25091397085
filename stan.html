@@ -1,0 +1,212 @@
+<!-- ================= KELOLA STAN ================= -->
+<div class="page-header">
+  <div class="page-title-box">
+    <h2 class="page-title">
+      <i class="fa-solid fa-store"></i> Manajemen Kemitraan Stan Pujasera
+    </h2>
+    <p class="page-subtitle">
+      Verifikasi pendaftaran stan baru, kelola status operasional, suspend pelanggaran, dan monitoring performa stan.
+    </p>
+  </div>
+  <div class="page-actions">
+    <button class="btn btn-outline" onclick="location.reload()">
+      <i class="fa-solid fa-rotate"></i> Refresh Data
+    </button>
+  </div>
+</div>
+
+<!-- Toolbar Filter Status & Pencarian -->
+<div class="content-panel">
+  <div class="panel-body">
+    <div class="toolbar-panel">
+      
+      <!-- Filter Tombol Tab -->
+      <div class="filter-pills" id="status-filter-pills">
+        <button type="button" class="pill-btn active" data-filter="ALL">
+          Semua Stan (5)
+        </button>
+        <button type="button" class="pill-btn" data-filter="AKTIF">
+          <i class="fa-solid fa-circle-check"></i> Aktif (3)
+        </button>
+        <button type="button" class="pill-btn" data-filter="PENDING">
+          <i class="fa-solid fa-clock"></i> Menunggu Verifikasi (1)
+        </button>
+        <button type="button" class="pill-btn" data-filter="SUSPENDED">
+          <i class="fa-solid fa-ban"></i> Ditangguhkan (1)
+        </button>
+      </div>
+
+      <!-- Kotak Pencarian Live -->
+      <div class="search-box-wrapper">
+        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+        <input type="text" id="stan-search-input" class="search-input" placeholder="Cari stan, pemilik, lokasi...">
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Tabel Daftar Stan -->
+<div class="content-panel">
+  <div class="panel-body no-padding">
+    <div class="table-container">
+      <table class="data-table" id="stan-table">
+        <thead>
+          <tr>
+            <th>ID Stan</th>
+            <th>Nama Stan &amp; Kuliner</th>
+            <th>Pemilik / Mitra</th>
+            <th>Nomor Lokasi</th>
+            <th>Jam Operasional</th>
+            <th>Status Operasional</th>
+            <th class="text-right">Aksi Administrator</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Stan 1 -->
+          <tr data-status="AKTIF" data-search="soto ayam lamongan cak har pak minarji stan a-01">
+            <td><strong>#STN-01</strong></td>
+            <td>
+              <div><strong>Soto Ayam Lamongan Cak Har</strong></div>
+              <small class="stat-desc">Kategori: Makanan Berkuah Tradisional</small>
+            </td>
+            <td><strong>Pak Minarji</strong></td>
+            <td><span class="status-badge badge-primary">Stan A-01 (Lt. 1)</span></td>
+            <td>08:00 - 21:00</td>
+            <td><span class="status-badge badge-success">AKTIF</span></td>
+            <td class="text-right">
+              <button class="btn btn-danger-outline btn-action" data-action="suspend" data-name="Soto Cak Har">
+                <i class="fa-solid fa-ban"></i> Suspend
+              </button>
+            </td>
+          </tr>
+
+          <!-- Stan 2 -->
+          <tr data-status="AKTIF" data-search="mie ayam bakso solo berkah bu sri rahayu stan a-02">
+            <td><strong>#STN-02</strong></td>
+            <td>
+              <div><strong>Mie Ayam &amp; Bakso Solo Berkah</strong></div>
+              <small class="stat-desc">Kategori: Olahan Bakso &amp; Mie</small>
+            </td>
+            <td><strong>Bu Sri Rahayu</strong></td>
+            <td><span class="status-badge badge-primary">Stan A-02 (Lt. 1)</span></td>
+            <td>09:00 - 22:00</td>
+            <td><span class="status-badge badge-success">AKTIF</span></td>
+            <td class="text-right">
+              <button class="btn btn-danger-outline btn-action" data-action="suspend" data-name="Mie Ayam Solo">
+                <i class="fa-solid fa-ban"></i> Suspend
+              </button>
+            </td>
+          </tr>
+
+          <!-- Stan 3: PENDING VERIFIKASI -->
+          <tr data-status="PENDING" data-search="kopi toast masa kini hendra saputra stan b-05">
+            <td><strong>#STN-03</strong></td>
+            <td>
+              <div><strong>Kopi &amp; Toast Masa Kini</strong></div>
+              <small style="color: var(--primary-red);"><i class="fa-solid fa-clock"></i> Pengajuan stan baru menunggu verifikasi</small>
+            </td>
+            <td><strong>Hendra Saputra</strong></td>
+            <td><span class="status-badge badge-primary">Stan B-05 (Lt. 2)</span></td>
+            <td>10:00 - 23:00</td>
+            <td><span class="status-badge badge-warning">PENDING</span></td>
+            <td class="text-right">
+              <button class="btn btn-primary btn-action" data-action="verifikasi" data-name="Kopi &amp; Toast">
+                <i class="fa-solid fa-check"></i> Verifikasi Stan
+              </button>
+            </td>
+          </tr>
+
+          <!-- Stan 4: SUSPENDED -->
+          <tr data-status="SUSPENDED" data-search="ayam geprek sambal judes agus riyanto stan a-03">
+            <td><strong>#STN-04</strong></td>
+            <td>
+              <div><strong>Ayam Geprek Sambal Judes</strong></div>
+              <small style="color: var(--primary-red);"><i class="fa-solid fa-ban"></i> Operasional stan ditangguhkan admin</small>
+            </td>
+            <td><strong>Agus Riyanto</strong></td>
+            <td><span class="status-badge badge-primary">Stan A-03 (Lt. 1)</span></td>
+            <td>09:00 - 20:00</td>
+            <td><span class="status-badge badge-primary">SUSPENDED</span></td>
+            <td class="text-right">
+              <button class="btn btn-outline btn-action" data-action="aktifkan" data-name="Ayam Geprek Judes">
+                <i class="fa-solid fa-rotate-left"></i> Pulihkan
+              </button>
+            </td>
+          </tr>
+
+          <!-- Stan 5 -->
+          <tr data-status="AKTIF" data-search="es teler durian 77 dimas permadi stan b-01">
+            <td><strong>#STN-05</strong></td>
+            <td>
+              <div><strong>Es Teler Durian 77</strong></div>
+              <small class="stat-desc">Kategori: Minuman Segar &amp; Dessert</small>
+            </td>
+            <td><strong>Dimas Permadi</strong></td>
+            <td><span class="status-badge badge-primary">Stan B-01 (Lt. 2)</span></td>
+            <td>10:00 - 22:00</td>
+            <td><span class="status-badge badge-success">AKTIF</span></td>
+            <td class="text-right">
+              <button class="btn btn-danger-outline btn-action" data-action="suspend" data-name="Es Teler 77">
+                <i class="fa-solid fa-ban"></i> Suspend
+              </button>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script>
+  function initStanFeatures() {
+    let currentFilter = 'ALL';
+    const $rows = $('#stan-table tbody tr');
+
+    function applyFilterAndSearch() {
+      const q = $('#stan-search-input').val().toLowerCase().trim();
+      $rows.each(function () {
+        const rowStatus = $(this).attr('data-status');
+        const rowSearch = $(this).attr('data-search') || '';
+        const matchStatus = (currentFilter === 'ALL' || rowStatus === currentFilter);
+        const matchSearch = (!q || rowSearch.indexOf(q) !== -1);
+        $(this).toggle(matchStatus && matchSearch);
+      });
+    }
+
+    $('#status-filter-pills .pill-btn').off('click').on('click', function () {
+      $('#status-filter-pills .pill-btn').removeClass('active');
+      $(this).addClass('active');
+      currentFilter = $(this).attr('data-filter');
+      applyFilterAndSearch();
+    });
+
+    $('#stan-search-input').off('keyup input').on('keyup input', applyFilterAndSearch);
+
+    // Aksi Verifikasi & Suspend
+    $('.btn-action').off('click').on('click', function () {
+      const action = $(this).attr('data-action');
+      const name = $(this).attr('data-name');
+      const $row = $(this).closest('tr');
+
+      if (action === 'verifikasi') {
+        alert('Stan "' + name + '" berhasil DIVERIFIKASI dan status diubah menjadi AKTIF.');
+        $row.attr('data-status', 'AKTIF');
+        $row.find('td:eq(5)').html('<span class="status-badge badge-success">AKTIF</span>');
+        $(this).removeClass('btn-primary').addClass('btn-danger-outline').attr('data-action', 'suspend').html('<i class="fa-solid fa-ban"></i> Suspend');
+      } else if (action === 'suspend') {
+        if (confirm('Apakah Anda yakin ingin menangguhkan (suspend) operasional stan "' + name + '"?')) {
+          $row.attr('data-status', 'SUSPENDED');
+          $row.find('td:eq(5)').html('<span class="status-badge badge-primary">SUSPENDED</span>');
+          $(this).removeClass('btn-danger-outline').addClass('btn-outline').attr('data-action', 'aktifkan').html('<i class="fa-solid fa-rotate-left"></i> Pulihkan');
+        }
+      } else if (action === 'aktifkan') {
+        alert('Stan "' + name + '" dipulihkan ke status AKTIF.');
+        $row.attr('data-status', 'AKTIF');
+        $row.find('td:eq(5)').html('<span class="status-badge badge-success">AKTIF</span>');
+        $(this).removeClass('btn-outline').addClass('btn-danger-outline').attr('data-action', 'suspend').html('<i class="fa-solid fa-ban"></i> Suspend');
+      }
+    });
+  }
+</script>

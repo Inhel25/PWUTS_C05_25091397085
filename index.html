@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Administrator - Sentra Kuliner NyamCenter</title>
+  <meta name="description" content="Dashboard Administrator Sentra Kuliner NyamCenter - Panel Kontrol Terpusat">
+
+  <!-- Google Fonts: Montserrat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6.5.1 untuk Ikon -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- CSS Kustom Murni Native & Semantik (Tanpa Framework Bootstrap) -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Favicon Ikon Kucing -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220%200%2032%2032%22><text y=%2226%22 font-size=%2226%22>🐱</text></svg>">
+</head>
+<body>
+
+  <!-- Overlay Mobile saat Sidebar Terbuka -->
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <!-- ================= SIDEBAR NAVIGASI ADMINISTRATOR ================= -->
+  <aside class="admin-sidebar" id="adminSidebar">
+    
+    <!-- Area Logo & Brand NyamCenter -->
+    <div class="sidebar-brand">
+      <div class="brand-header">
+        <span class="brand-icon"><i class="fa-solid fa-cat"></i></span>
+        <div>
+          <h2 class="brand-title">NyamCenter<span class="brand-dot">.</span></h2>
+          <span class="brand-badge">Master Admin</span>
+        </div>
+      </div>
+      <p class="brand-subtitle">Sentra Kuliner Pujasera Modern</p>
+    </div>
+
+    <!-- Menu Navigasi Admin -->
+    <div class="sidebar-nav-container">
+      <div class="nav-section-title">Menu Administrator</div>
+
+      <nav class="nav-menu">
+        <!-- 1. Dashboard Utama -->
+        <a href="javascript:void(0)" 
+           class="nav-item-link ajax-link active" 
+           data-page="dashboard.html" 
+           data-title="Dashboard Utama Administrator">
+          <i class="fa-solid fa-chart-pie"></i>
+          <span>Dashboard Utama</span>
+        </a>
+
+        <!-- 2. Kelola Stan -->
+        <a href="javascript:void(0)" 
+           class="nav-item-link ajax-link" 
+           data-page="stan.html" 
+           data-title="Manajemen Kemitraan Stan Pujasera">
+          <i class="fa-solid fa-store"></i>
+          <span>Kelola Stan</span>
+        </a>
+
+        <!-- 3. Kelola Pengguna -->
+        <a href="javascript:void(0)" 
+           class="nav-item-link ajax-link" 
+           data-page="pengguna.html" 
+           data-title="Manajemen Pengguna &amp; Hak Akses">
+          <i class="fa-solid fa-users-gear"></i>
+          <span>Kelola Pengguna</span>
+        </a>
+
+        <!-- 4. Monitoring Transaksi -->
+        <a href="javascript:void(0)" 
+           class="nav-item-link ajax-link" 
+           data-page="transaksi.html" 
+           data-title="Monitoring Transaksi &amp; Biaya Layanan">
+          <i class="fa-solid fa-receipt"></i>
+          <span>Monitoring Transaksi</span>
+        </a>
+
+        <!-- 5. Laporan Penjualan -->
+        <a href="javascript:void(0)" 
+           class="nav-item-link ajax-link" 
+           data-page="laporan.html" 
+           data-title="Laporan Penjualan &amp; Rekapitulasi">
+          <i class="fa-solid fa-file-invoice-dollar"></i>
+          <span>Laporan Penjualan</span>
+        </a>
+      </nav>
+    </div>
+
+    <!-- Profil Admin & Pengaturan Tema -->
+    <div class="sidebar-footer">
+      <div class="admin-profile-bar">
+        <div class="admin-profile-info">
+          <img src="images/admin-profile.jpg" alt="Foto Profil Admin" class="admin-avatar">
+          <div>
+            <div class="admin-name">Admin</div>
+            <div class="admin-role">Super Administrator</div>
+          </div>
+        </div>
+        <button id="theme-toggle-btn" class="theme-btn" title="Ubah Tema Gelap/Terang">
+          <i id="theme-icon" class="fa-solid fa-moon"></i>
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ================= AREA UTAMA ================= -->
+  <main class="admin-main">
+    
+    <!-- Topbar Navigasi -->
+    <header class="admin-topbar">
+      <div class="topbar-left">
+        <button class="mobile-toggle-btn" type="button" id="btn-sidebar-toggle" aria-label="Buka Menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+        <div>
+          <h1 class="topbar-heading" id="topbar-title">Dashboard Utama Administrator</h1>
+          <p class="topbar-subheading">Sentra Kuliner Pujasera Modern • Panel Kontrol Terpusat</p>
+        </div>
+      </div>
+
+      <div class="topbar-right">
+        <span class="system-status-badge">
+          <i class="fa-solid fa-circle-dot"></i> Sistem Aktif
+        </span>
+      </div>
+    </header>
+
+    <!-- Animasi Loader AJAX -->
+    <div id="ajax-loader">
+      <div class="spinner-pulse"></div>
+      <p class="panel-subtitle" style="margin-top: 8px;">Memuat data...</p>
+    </div>
+
+    <!-- Kontainer Konten Dinamis via AJAX -->
+    <div class="admin-content" id="main-content">
+      <!-- Berkas HTML subhalaman dimuat di sini secara asinkron -->
+    </div>
+
+    <!-- Footer Panel -->
+    <footer class="admin-footer">
+      <div>&copy; 2026 <strong style="color: var(--primary-red);">NyamCenter Sentra Kuliner</strong> • Seluruh Hak Cipta Dilindungi</div>
+      <div>Sistem Manajemen Pujasera • Modul Administrator</div>
+    </footer>
+
+  </main>
+
+  <!-- Library jQuery 3.7.1 -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+  <!-- Script Navigasi Native & Interaktivitas -->
+  <script src="js/ajax-nav.js"></script>
+
+</body>
+</html>

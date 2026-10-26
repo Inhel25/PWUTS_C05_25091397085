@@ -1,0 +1,135 @@
+<!-- ================= DASHBOARD ADMINISTRATOR ================= -->
+<div class="page-header">
+  <div class="page-title-box">
+    <h2 class="page-title">
+      <i class="fa-solid fa-chart-pie"></i> Dashboard Utama Administrator
+    </h2>
+    <p class="page-subtitle">
+      Ringkasan operasional real-time Sentra Kuliner Pujasera NyamCenter.
+    </p>
+  </div>
+  <div class="page-actions">
+    <button class="btn btn-outline" onclick="location.reload()">
+      <i class="fa-solid fa-rotate"></i> Segarkan Data
+    </button>
+  </div>
+</div>
+
+<!-- 4 Top Stat Cards (Grid Otomatis Semantic) -->
+<div class="stats-grid">
+  
+  <!-- 1. Kemitraan Stan -->
+  <div class="stat-card">
+    <div class="stat-header">
+      <span class="stat-title">Kemitraan Stan</span>
+      <span class="stat-icon"><i class="fa-solid fa-store"></i></span>
+    </div>
+    <div class="stat-value">6 Stan</div>
+    <div class="stat-meta">
+      <span class="status-badge badge-success">4 Aktif</span>
+      <span class="status-badge badge-primary"><i class="fa-solid fa-clock"></i> 1 Pending</span>
+    </div>
+  </div>
+
+  <!-- 2. Total Pesanan -->
+  <div class="stat-card">
+    <div class="stat-header">
+      <span class="stat-title">Total Pesanan</span>
+      <span class="stat-icon"><i class="fa-solid fa-receipt"></i></span>
+    </div>
+    <div class="stat-value">48 Pesanan</div>
+    <p class="stat-desc">Akumulasi pesanan lintas stan</p>
+  </div>
+
+  <!-- 3. Total Omset Pujasera -->
+  <div class="stat-card">
+    <div class="stat-header">
+      <span class="stat-title">Total Omset Pujasera</span>
+      <span class="stat-icon"><i class="fa-solid fa-money-bill-wave"></i></span>
+    </div>
+    <div class="stat-value stat-value-primary">Rp 1.840.000</div>
+    <p class="stat-desc">Perputaran bruto tenant stan</p>
+  </div>
+
+  <!-- 4. Biaya Layanan Platform -->
+  <div class="stat-card">
+    <div class="stat-header">
+      <span class="stat-title">Kas Fee Platform</span>
+      <span class="stat-icon"><i class="fa-solid fa-coins"></i></span>
+    </div>
+    <div class="stat-value stat-value-secondary">Rp 96.000</div>
+    <p class="stat-desc">Tarif aktif: <strong>Rp 2.000</strong> / order</p>
+  </div>
+
+</div>
+
+<!-- Panel Tabel Pesanan Terkini -->
+<div class="content-panel">
+  <div class="panel-header">
+    <div>
+      <h3 class="panel-title">
+        <i class="fa-solid fa-clock-rotate-left"></i> Log Aktivitas Pesanan Terkini Lintas Stan
+      </h3>
+      <p class="panel-subtitle">Menampilkan aliran transaksi real-time di seluruh pujasera</p>
+    </div>
+    <a href="javascript:void(0)" class="btn btn-outline ajax-link" data-page="transaksi.html" data-title="Monitoring Transaksi &amp; Biaya Layanan">
+      Lihat Semua Transaksi &rarr;
+    </a>
+  </div>
+
+  <div class="panel-body no-padding">
+    <div class="table-container">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>No Pesanan</th>
+            <th>Waktu</th>
+            <th>Stan Kuliner</th>
+            <th>Pelanggan</th>
+            <th>Total Bayar</th>
+            <th>Metode</th>
+            <th>Status Pesanan</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>#ORD-202610-001</strong></td>
+            <td>Hari ini, 12:45</td>
+            <td><strong>Soto Ayam Cak Har</strong></td>
+            <td>Kristina Ina Helan</td>
+            <td><strong class="stat-value-primary">Rp 38.000</strong></td>
+            <td><span class="status-badge badge-primary">QRIS</span></td>
+            <td><span class="status-badge badge-success">COMPLETED</span></td>
+          </tr>
+          <tr>
+            <td><strong>#ORD-202610-002</strong></td>
+            <td>Hari ini, 12:38</td>
+            <td><strong>Mie Ayam Solo Berkah</strong></td>
+            <td>Anisa Dini Septianda</td>
+            <td><strong class="stat-value-primary">Rp 44.000</strong></td>
+            <td><span class="status-badge badge-primary">QRIS</span></td>
+            <td><span class="status-badge badge-info">IN_PROCESS</span></td>
+          </tr>
+          <tr>
+            <td><strong>#ORD-202610-003</strong></td>
+            <td>Hari ini, 12:30</td>
+            <td><strong>Es Teler Durian 77</strong></td>
+            <td>Riska Nuraini</td>
+            <td><strong class="stat-value-primary">Rp 25.000</strong></td>
+            <td><span class="status-badge badge-warning">TUNAI</span></td>
+            <td><span class="status-badge badge-success">READY</span></td>
+          </tr>
+          <tr>
+            <td><strong>#ORD-202610-004</strong></td>
+            <td>Hari ini, 12:15</td>
+            <td><strong>Ayam Geprek Sambal Judes</strong></td>
+            <td>Dimas Pratama</td>
+            <td><strong class="stat-value-primary">Rp 27.000</strong></td>
+            <td><span class="status-badge badge-primary">E_WALLET</span></td>
+            <td><span class="status-badge badge-success">COMPLETED</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

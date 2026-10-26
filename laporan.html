@@ -1,0 +1,199 @@
+<!-- ================= LAPORAN PENJUALAN ================= -->
+
+<!-- Header Kontrol (Disembunyikan saat cetak PDF) -->
+<div class="page-header d-print-none">
+  <div class="page-title-box">
+    <h2 class="page-title">
+      <i class="fa-solid fa-file-invoice-dollar"></i> Laporan Rekapitulasi Penjualan &amp; Kas
+    </h2>
+    <p class="page-subtitle">
+      Kompilasi laporan keuangan transaksi, omset stan kuliner, fee platform, dan rekapitulasi performa.
+    </p>
+  </div>
+  <div class="page-actions">
+    <!-- Tombol Cetak / Export PDF -->
+    <button class="btn btn-danger-outline" onclick="window.print()">
+      <i class="fa-solid fa-file-pdf"></i> Cetak / Export PDF
+    </button>
+    <!-- Tombol Export Excel / CSV -->
+    <button class="btn btn-primary" id="btn-export-csv">
+      <i class="fa-solid fa-file-excel"></i> Export Excel (CSV)
+    </button>
+  </div>
+</div>
+
+<!-- Form Filter Periode -->
+<div class="content-panel d-print-none">
+  <div class="panel-body">
+    <form id="form-filter-laporan" class="filter-form-grid">
+      <div class="form-group" style="margin-bottom: 0;">
+        <label class="form-label" for="lap_tgl_awal">Periode Mulai (Tanggal Awal)</label>
+        <input type="date" id="lap_tgl_awal" class="form-input" value="2026-10-01">
+      </div>
+      <div class="form-group" style="margin-bottom: 0;">
+        <label class="form-label" for="lap_tgl_akhir">Periode Selesai (Tanggal Akhir)</label>
+        <input type="date" id="lap_tgl_akhir" class="form-input" value="2026-10-26">
+      </div>
+      <div class="form-actions-inline">
+        <button type="submit" class="btn btn-primary">
+          <i class="fa-solid fa-filter"></i> Terapkan Filter
+        </button>
+        <button type="button" class="btn btn-danger-outline" id="btn-reset-laporan" title="Reset filter">
+          <i class="fa-solid fa-rotate-left"></i>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Kartu Ringkasan Metrik Laporan -->
+<div class="stats-grid">
+  <div class="stat-card">
+    <div class="stat-header">
+      <span class="stat-title">TOTAL TRANSAKSI</span>
+      <span class="stat-icon"><i class="fa-solid fa-receipt"></i></span>
+    </div>
+    <div class="stat-value" id="kpi-trx">48 Pesanan</div>
+    <p class="stat-desc">Periode 01-26 Okt 2026</p>
+  </div>
+
+  <div class="stat-card">
+    <div class="stat-header">
+      <span class="stat-title">TOTAL OMSET PUJASERA</span>
+      <span class="stat-icon"><i class="fa-solid fa-money-bill-wave"></i></span>
+    </div>
+    <div class="stat-value stat-value-primary" id="kpi-omset">Rp 1.840.000</div>
+    <p class="stat-desc">Bruto seluruh stan</p>
+  </div>
+
+  <div class="stat-card">
+    <div class="stat-header">
+      <span class="stat-title">KAS FEE PLATFORM</span>
+      <span class="stat-icon"><i class="fa-solid fa-coins"></i></span>
+    </div>
+    <div class="stat-value stat-value-secondary" id="kpi-fee">Rp 96.000</div>
+    <p class="stat-desc">Biaya layanan platform</p>
+  </div>
+
+  <div class="stat-card">
+    <div class="stat-header">
+      <span class="stat-title">RATA-RATA ORDER</span>
+      <span class="stat-icon"><i class="fa-solid fa-chart-line"></i></span>
+    </div>
+    <div class="stat-value stat-value-pink" id="kpi-avg">Rp 38.333</div>
+    <p class="stat-desc">Rata-rata belanja / nota</p>
+  </div>
+</div>
+
+<!-- Panel Tabel Rekapitulasi Penjualan per Stan -->
+<div class="content-panel">
+  <div class="panel-header">
+    <h3 class="panel-title">
+      <i class="fa-solid fa-chart-column"></i> Rekapitulasi Penjualan &amp; Pendapatan per Stan Kuliner
+    </h3>
+  </div>
+
+  <div class="panel-body no-padding">
+    <div class="table-container">
+      <table class="data-table" id="report-table">
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Nama Stan Kuliner</th>
+            <th>Pemilik / Mitra</th>
+            <th>Jumlah Pesanan</th>
+            <th>Omset Stan (Rp)</th>
+            <th>Fee Platform (Rp)</th>
+            <th>Total Kas Masuk (Rp)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td><strong>Soto Ayam Lamongan Cak Har</strong></td>
+            <td>Pak Minarji</td>
+            <td>18 Pesanan</td>
+            <td>Rp 684.000</td>
+            <td>Rp 36.000</td>
+            <td><strong class="stat-value-primary">Rp 720.000</strong></td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td><strong>Mie Ayam &amp; Bakso Solo Berkah</strong></td>
+            <td>Bu Sri Rahayu</td>
+            <td>14 Pesanan</td>
+            <td>Rp 588.000</td>
+            <td>Rp 28.000</td>
+            <td><strong class="stat-value-primary">Rp 616.000</strong></td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td><strong>Es Teler Durian 77</strong></td>
+            <td>Dimas Permadi</td>
+            <td>10 Pesanan</td>
+            <td>Rp 230.000</td>
+            <td>Rp 20.000</td>
+            <td><strong class="stat-value-primary">Rp 250.000</strong></td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td><strong>Ayam Geprek Sambal Judes</strong></td>
+            <td>Agus Riyanto</td>
+            <td>6 Pesanan</td>
+            <td>Rp 150.000</td>
+            <td>Rp 12.000</td>
+            <td><strong class="stat-value-primary">Rp 162.000</strong></td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="3" class="text-center">TOTAL KESELURUHAN PUJASERA</td>
+            <td>48 Pesanan</td>
+            <td>Rp 1.652.000</td>
+            <td>Rp 96.000</td>
+            <td class="stat-value-primary">Rp 1.748.000</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script>
+  function initLaporanFeatures() {
+    // 1. Filter Tanggal Laporan
+    $('#form-filter-laporan').off('submit').on('submit', function (e) {
+      e.preventDefault();
+      const awal = $('#lap_tgl_awal').val();
+      const akhir = $('#lap_tgl_akhir').val();
+      alert('Filter periode ' + awal + ' s/d ' + akhir + ' berhasil diterapkan. Data rekapitulasi diperbarui.');
+    });
+
+    $('#btn-reset-laporan').off('click').on('click', function () {
+      $('#lap_tgl_awal').val('2026-10-01');
+      $('#lap_tgl_akhir').val('2026-10-26');
+      alert('Filter periode di-reset ke default bulan berjalan.');
+    });
+
+    // 2. Ekspor CSV
+    $('#btn-export-csv').off('click').on('click', function () {
+      let csv = 'No,Nama Stan Kuliner,Pemilik,Jumlah Pesanan,Omset Stan,Fee Platform,Total Kas\n';
+      $('#report-table tbody tr').each(function () {
+        const row = [];
+        $(this).find('td').each(function () {
+          row.push('"' + $(this).text().trim().replace(/"/g, '""') + '"');
+        });
+        csv += row.join(',') + '\n';
+      });
+
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.setAttribute('href', url);
+      link.setAttribute('download', 'Laporan_Penjualan_NyamCenter_' + new Date().toISOString().slice(0,10) + '.csv');
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    });
+  }
+</script>

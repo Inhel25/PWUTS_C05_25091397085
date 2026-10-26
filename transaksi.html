@@ -1,0 +1,237 @@
+<!-- ================= MONITORING TRANSAKSI & BIAYA LAYANAN ================= -->
+<div class="page-header">
+  <div class="page-title-box">
+    <h2 class="page-title">
+      <i class="fa-solid fa-receipt"></i> Monitoring Transaksi &amp; Biaya Layanan
+    </h2>
+    <p class="page-subtitle">
+      Pantau seluruh transaksi lintas stan real-time dan konfigurasi nominal biaya layanan platform.
+    </p>
+  </div>
+  <div class="page-actions">
+    <!-- Tombol Modal Ubah Biaya Layanan -->
+    <button class="btn btn-primary" id="btn-trigger-fee">
+      <i class="fa-solid fa-sliders"></i> Atur Biaya Layanan
+    </button>
+  </div>
+</div>
+
+<!-- Kartu Ringkasan Biaya & Metrik Transaksi -->
+<div class="metrics-grid-3">
+  
+  <div class="stat-card">
+    <div class="stat-header">
+      <span class="stat-title">BIAYA LAYANAN SAAT INI</span>
+      <span class="stat-icon"><i class="fa-solid fa-tag"></i></span>
+    </div>
+    <div class="stat-value stat-value-primary" id="current-fee-display">Rp 2.000</div>
+    <p class="stat-desc">Dikenakan per transaksi pelanggan</p>
+  </div>
+
+  <div class="stat-card">
+    <div class="stat-header">
+      <span class="stat-title">TOTAL FEE TERKUMPUL</span>
+      <span class="stat-icon"><i class="fa-solid fa-coins"></i></span>
+    </div>
+    <div class="stat-value stat-value-secondary">Rp 96.000</div>
+    <p class="stat-desc">Dari 48 transaksi pesanan</p>
+  </div>
+
+  <div class="stat-card">
+    <div class="stat-header">
+      <span class="stat-title">PERPUTARAN OMSET STAN</span>
+      <span class="stat-icon"><i class="fa-solid fa-store"></i></span>
+    </div>
+    <div class="stat-value stat-value-pink">Rp 1.744.000</div>
+    <p class="stat-desc">Pendapatan kotor seluruh stan</p>
+  </div>
+
+</div>
+
+<!-- Panel Tabel Transaksi Real-time -->
+<div class="content-panel">
+  <div class="panel-header">
+    <div>
+      <h3 class="panel-title">
+        <i class="fa-solid fa-list-check"></i> Log Transaksi Pesanan Lintas Stan
+      </h3>
+      <p class="panel-subtitle">Cari berdasarkan nomor pesanan, nama stan, atau nama pelanggan</p>
+    </div>
+    
+    <!-- Kotak Pencarian -->
+    <div class="search-box-wrapper">
+      <i class="fa-solid fa-magnifying-glass search-icon"></i>
+      <input type="text" id="trx-search" class="search-input" placeholder="Cari no order, stan, pemesan...">
+    </div>
+  </div>
+
+  <div class="panel-body no-padding">
+    <div class="table-container">
+      <table class="data-table" id="trx-table">
+        <thead>
+          <tr>
+            <th>No Pesanan</th>
+            <th>Waktu</th>
+            <th>Stan Kuliner</th>
+            <th>Pelanggan</th>
+            <th>Subtotal</th>
+            <th>Biaya Layanan</th>
+            <th>Total Bayar</th>
+            <th>Metode Bayar</th>
+            <th>Status Pembayaran</th>
+            <th>Status Order</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>#ORD-202610-001</strong></td>
+            <td>26/10 12:45</td>
+            <td><strong>Soto Ayam Cak Har</strong></td>
+            <td>Kristina Ina Helan</td>
+            <td>Rp 36.000</td>
+            <td>Rp 2.000</td>
+            <td><strong class="stat-value-primary">Rp 38.000</strong></td>
+            <td><span class="status-badge badge-primary">QRIS</span></td>
+            <td><span class="status-badge badge-success">SUCCESS</span></td>
+            <td><span class="status-badge badge-success">COMPLETED</span></td>
+          </tr>
+          <tr>
+            <td><strong>#ORD-202610-002</strong></td>
+            <td>26/10 12:38</td>
+            <td><strong>Mie Ayam Solo Berkah</strong></td>
+            <td>Anisa Dini Septianda</td>
+            <td>Rp 42.000</td>
+            <td>Rp 2.000</td>
+            <td><strong class="stat-value-primary">Rp 44.000</strong></td>
+            <td><span class="status-badge badge-primary">QRIS</span></td>
+            <td><span class="status-badge badge-success">SUCCESS</span></td>
+            <td><span class="status-badge badge-info">IN_PROCESS</span></td>
+          </tr>
+          <tr>
+            <td><strong>#ORD-202610-003</strong></td>
+            <td>26/10 12:30</td>
+            <td><strong>Es Teler Durian 77</strong></td>
+            <td>Riska Nuraini</td>
+            <td>Rp 23.000</td>
+            <td>Rp 2.000</td>
+            <td><strong class="stat-value-primary">Rp 25.000</strong></td>
+            <td><span class="status-badge badge-warning">TUNAI</span></td>
+            <td><span class="status-badge badge-success">SUCCESS</span></td>
+            <td><span class="status-badge badge-success">READY</span></td>
+          </tr>
+          <tr>
+            <td><strong>#ORD-202610-004</strong></td>
+            <td>26/10 12:15</td>
+            <td><strong>Ayam Geprek Sambal Judes</strong></td>
+            <td>Dimas Pratama</td>
+            <td>Rp 25.000</td>
+            <td>Rp 2.000</td>
+            <td><strong class="stat-value-primary">Rp 27.000</strong></td>
+            <td><span class="status-badge badge-primary">E_WALLET</span></td>
+            <td><span class="status-badge badge-success">SUCCESS</span></td>
+            <td><span class="status-badge badge-success">COMPLETED</span></td>
+          </tr>
+          <tr>
+            <td><strong>#ORD-202610-005</strong></td>
+            <td>26/10 11:50</td>
+            <td><strong>Kopi &amp; Toast Masa Kini</strong></td>
+            <td>Budi Susanto</td>
+            <td>Rp 18.000</td>
+            <td>Rp 2.000</td>
+            <td><strong class="stat-value-primary">Rp 20.000</strong></td>
+            <td><span class="status-badge badge-primary">QRIS</span></td>
+            <td><span class="status-badge badge-warning">PENDING</span></td>
+            <td><span class="status-badge badge-warning">WAITING</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ================= MODAL ATUR BIAYA LAYANAN ================= -->
+<div class="custom-modal" id="modalAturFee">
+  <div class="modal-dialog-box">
+    
+    <div class="modal-box-header">
+      <h3 class="modal-box-title">
+        <i class="fa-solid fa-sliders"></i> Atur Biaya Layanan Platform
+      </h3>
+      <button type="button" class="modal-close-icon" id="btn-close-modal-fee" aria-label="Tutup">&times;</button>
+    </div>
+
+    <form id="formAturFeeModal">
+      <div class="modal-box-body">
+        <p class="panel-subtitle" style="margin-bottom: 12px;">
+          Biaya layanan platform (Platform Service Fee) adalah biaya administrasi sistem yang dibebankan kepada pelanggan per setiap transaksi checkout.
+        </p>
+
+        <div class="form-group">
+          <label class="form-label" for="input_biaya_layanan">Nominal Biaya Layanan (Rupiah)</label>
+          <div class="input-with-icon">
+            <span class="input-icon">Rp</span>
+            <input type="number" id="input_biaya_layanan" class="form-input" required value="2000" min="0" step="500">
+          </div>
+          <small class="input-hint">Rekomendasi standar pujasera: Rp 1.000 s/d Rp 3.000</small>
+        </div>
+
+        <div class="info-notice">
+          <i class="fa-solid fa-circle-info"></i>
+          <span>Perubahan nominal akan langsung berlaku pada seluruh transaksi checkout baru di platform.</span>
+        </div>
+      </div>
+
+      <div class="modal-box-footer">
+        <button type="button" class="btn btn-danger-outline" id="btn-cancel-modal-fee">Batal</button>
+        <button type="submit" class="btn btn-primary">
+          <i class="fa-solid fa-floppy-disk"></i> Simpan Biaya Layanan
+        </button>
+      </div>
+    </form>
+
+  </div>
+</div>
+
+<script>
+  function initTransaksiFeatures() {
+    // 1. Live Search
+    $('#trx-search').off('input keyup').on('input keyup', function () {
+      const q = $(this).val().toLowerCase().trim();
+      const $rows = $('#trx-table tbody tr');
+      $rows.each(function () {
+        const text = $(this).text().toLowerCase();
+        $(this).toggle(!q || text.indexOf(q) !== -1);
+      });
+    });
+
+    // 2. Modal Handler Buka / Tutup
+    $('#btn-trigger-fee').off('click').on('click', function () {
+      $('#modalAturFee').addClass('show');
+      $('body').css('overflow', 'hidden');
+    });
+
+    $('#btn-close-modal-fee, #btn-cancel-modal-fee').off('click').on('click', function () {
+      $('#modalAturFee').removeClass('show');
+      $('body').css('overflow', '');
+    });
+
+    // 3. Submit Pengaturan Biaya Layanan
+    $('#formAturFeeModal').off('submit').on('submit', function (e) {
+      e.preventDefault();
+      const val = parseInt($('#input_biaya_layanan').val(), 10);
+      if (isNaN(val) || val < 0) {
+        alert('Nominal biaya layanan harus berupa angka positif.');
+        return false;
+      }
+
+      // Update tampilan
+      $('#current-fee-display').text('Rp ' + val.toLocaleString('id-ID'));
+
+      // Tutup modal native
+      $('#modalAturFee').removeClass('show');
+      $('body').css('overflow', '');
+
+      alert('Biaya layanan platform berhasil diperbarui menjadi Rp ' + val.toLocaleString('id-ID') + ' per transaksi.');
+    });
+  }
+</script>
